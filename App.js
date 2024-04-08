@@ -14,6 +14,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import WelcomePage from './src/components/WelcomePage/Welcome';
 import HomePage from './src/components/HomePage/Home';
+import PhoneVerification from './src/components/Verification/PhoneVerification';
+import auth from '@react-native-firebase/auth';
+
+// Initialize Firebase
+if (!auth().isInitialized) {
+  auth().initializeApp();
+}
+
+AppRegistry.registerComponent(appName, () => App);
 
 const Stack = createStackNavigator();
 
@@ -22,6 +31,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome">
         <Stack.Screen name="Welcome" component={WelcomePage} />
+        <Stack.Screen name="PhoneVerification" component={PhoneVerification} />
         <Stack.Screen name="Home" component={HomePage} />
       </Stack.Navigator>
     </NavigationContainer>
